@@ -14,6 +14,11 @@ object Task2 {
 
     val filteredTuples = filterTupleList(inventory)
     printTupleList(filteredTuples)
+
+    println("----------")
+
+    val filteredTuplesWithGenerator = filterTupleListGenerator(inventory)
+    printTupleList(filteredTuplesWithGenerator)
   }
 
   /**
@@ -34,5 +39,9 @@ object Task2 {
     inventory
       .filter(_._2 < 10)
       .sortBy(_._2)
+  }
+
+  def filterTupleListGenerator(inventory: List[(String, Int)]): List[(String, Int)] = {
+    for(item <- inventory if item._2 < 10) yield item
   }
 }
