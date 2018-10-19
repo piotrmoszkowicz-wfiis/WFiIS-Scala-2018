@@ -41,6 +41,12 @@ object Task2 {
       .sortBy(_._2)
   }
 
+  /**
+    * Filters and sorts list of tuples
+    *
+    * @param inventory List[(String, Int)] List of tuples
+    * @return List[(String, Int)] List of filtered tuples sorted by 2nd field
+    */
   def filterTupleListGenerator(inventory: List[(String, Int)]): List[(String, Int)] = {
     for(item <- inventory if item._2 < 10) yield item
   }
