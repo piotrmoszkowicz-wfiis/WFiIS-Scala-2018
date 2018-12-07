@@ -18,7 +18,7 @@ trait Wrap extends MyString {
 }
 
 trait Transform extends MyString {
-  var transformation = (str: String) => str
+  var transformation: String => String = (str: String) => str
   override def transform(func: String => String): String = {
     transformation = func
     transformation(content)
