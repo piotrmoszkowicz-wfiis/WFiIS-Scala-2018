@@ -2,14 +2,28 @@ class MyString ( val content: String ) {
   override def toString: String = {
     content
   }
+  def wrap(prefix: String, suffix: String): String = content
+  def transform(func: String => String): String = content
 }
 
 trait Wrap extends MyString {
-  def wrap(prefix: String, suffix: String): String = prefix + content + suffix
+  var prefix = ""
+  var suffix = ""
+  override def wrap(pref: String, suff: String): String = {
+    prefix = pref
+    suffix = suff
+    prefix + content + suffix
+  }
+  override def toString: String = prefix + super.toString + suffix
 }
 
 trait Transform extends MyString {
-  def transform(func: String => String): String = func(content)
+  var transformation = (str: String) => str
+  override def transform(func: String => String): String = {
+    transformation = func
+    transformation(content)
+  }
+  override def toString: String = transformation(super.toString)
 }
 
 case class SpacedWord( str: String ) extends MyString ( str ) with Wrap with Transform {
