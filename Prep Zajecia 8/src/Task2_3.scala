@@ -4,19 +4,17 @@ class Server(var agents: List[NewCon] = List.empty) {
       case newCon: NewCon =>
         println(newCon)
         agents = newCon :: agents
-        this
       case drop: Drop =>
         println(drop)
         agents = agents.filter(_.agent != drop.agent)
-        this
       case request: Request =>
         if (agents.exists(_.agent == request.agent)) {
           println(request.accept)
         } else {
           println(request.reject)
         }
-        this
     }
+    this
   }
 }
 
