@@ -23,8 +23,8 @@ object Task2 {
 
     val found = psearch( rstr, 'x')
 
-    found onSuccess  {
-      case f => println("found " + f )
+    found onComplete   {
+      case Success(f) => println("found " + f )
     }
 
     Await.ready( found , Duration(10, SECONDS))
